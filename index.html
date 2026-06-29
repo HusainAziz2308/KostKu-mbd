@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KostKu | by Aziz Husain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#f8fafc] min-h-screen text-slate-800">
+
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200">K</div>
+                <h1 class="text-xl font-bold text-slate-900 tracking-tight">KostKu<span class="text-indigo-600 font-medium">Dashboard</span></h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div id="status-indicator" class="flex items-center space-x-2 bg-emerald-50 px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-700 border border-emerald-100">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Sistem Aktif</span>
+                </div>
+                <div class="w-8 h-8 bg-slate-200 rounded-full overflow-hidden border border-slate-300">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Admin Avatar">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Kamar</p>
+                    <p id="stat-total" class="text-2xl font-bold text-slate-800 mt-0.5">-</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Kamar Terisi</p>
+                    <p id="stat-occupied" class="text-2xl font-bold text-slate-800 mt-0.5">-</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Kamar Kosong</p>
+                    <p id="stat-available" class="text-2xl font-bold text-slate-800 mt-0.5">-</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center space-x-4">
+                <div class="p-3 bg-rose-50 text-rose-600 rounded-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Tunggakan</p>
+                    <p id="stat-unpaid-revenue" class="text-xl font-bold text-slate-800 mt-1">Rp -</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 lg:col-span-2 space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-2 h-5 bg-indigo-600 rounded-full"></div>
+                        <h2 class="text-lg font-bold text-slate-800">Daftar Hunian</h2>
+                    </div>
+                </div>
+
+                <div id="rooms-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="animate-pulse border border-slate-100 p-4 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center space-x-3 w-3/4">
+                            <div class="w-10 h-10 bg-slate-100 rounded-xl"></div>
+                            <div class="space-y-2 flex-1">
+                                <div class="h-4 bg-slate-100 rounded w-1/2"></div>
+                                <div class="h-3 bg-slate-100 rounded w-5/6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-2 h-5 bg-rose-500 rounded-full"></div>
+                        <h2 class="text-lg font-bold text-slate-800">Perlu Penagihan</h2>
+                    </div>
+                </div>
+
+                <div id="unpaid-bills" class="space-y-4 flex-1 overflow-y-auto max-h-[420px] pr-1">
+                    <div class="animate-pulse p-4 bg-slate-50 border border-slate-100 rounded-xl space-y-3">
+                        <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+                        <div class="h-3 bg-slate-200 rounded w-1/2"></div>
+                        <div class="h-4 bg-slate-200 rounded w-1/4 mt-2"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script type="module">
+        // Menggunakan Firebase versi baru dari CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        // Styling Badge
+        const getStatusBadge = (status) => {
+            const styles = {
+                'occupied': { classes: 'bg-emerald-50 text-emerald-700 border-emerald-200', label: 'Terisi' },
+                'available': { classes: 'bg-sky-50 text-sky-700 border-sky-200', label: 'Kosong' },
+                'maintenance': { classes: 'bg-amber-50 text-amber-700 border-amber-200', label: 'Perbaikan' }
+            };
+            return styles[status] || { classes: 'bg-slate-50 text-slate-600 border-slate-200', label: status };
+        };
+
+        async function initDashboard() {
+            try {
+                // Mengambil config tanpa mem-build .env secara terang-terangan di browser
+                const response = await fetch('/api/config');
+                const firebaseConfig = await response.json();
+
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                // Update Data Kamar secara Real-time
+                const roomsRef = collection(db, "properties", "prop1", "rooms");
+                onSnapshot(roomsRef, (snap) => {
+                    const container = document.getElementById('rooms-list');
+                    let total = 0, occupied = 0, available = 0;
+
+                    if(snap.empty) {
+                        container.innerHTML = `<p class="text-slate-400 italic">Belum ada data kamar.</p>`;
+                        return;
+                    }
+
+                    container.innerHTML = '';
+                    snap.forEach(doc => {
+                        const d = doc.data();
+                        total++;
+                        if(d.status === 'occupied') occupied++;
+                        else if(d.status === 'available') available++;
+                        
+                        const badge = getStatusBadge(d.status);
+                        
+                        container.innerHTML += `
+                            <div class="group p-4 bg-white border border-slate-100 rounded-xl hover:border-indigo-100 hover:shadow-sm transition-all duration-200 flex items-center justify-between">
+                                <div class="flex items-center space-x-3.5">
+                                    <div class="p-2.5 bg-slate-50 group-hover:bg-indigo-50 text-slate-400 group-hover:text-indigo-600 rounded-xl transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-2 2m2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-800 text-sm">Kamar ${d.roomNumber}</p>
+                                        <p class="text-xs text-slate-400 font-medium mt-0.5">${d.type} • <span class="text-indigo-600 font-semibold">Rp ${(d.price || 0).toLocaleString('id-ID')}</span></p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase border ${badge.classes}">
+                                    ${badge.label}
+                                </span>
+                            </div>
+                        `;
+                    });
+
+                    // Update Top Stats
+                    document.getElementById('stat-total').innerText = total;
+                    document.getElementById('stat-occupied').innerText = occupied;
+                    document.getElementById('stat-available').innerText = available;
+                });
+
+                // Update Tagihan & Total Tunggakan Real-time
+                const paymentsRef = collection(db, "payments");
+                const q = query(paymentsRef, where("status", "==", "unpaid"));
+                
+                onSnapshot(q, (snap) => {
+                    const container = document.getElementById('unpaid-bills');
+                    let totalUnpaidAmount = 0;
+
+                    if(snap.empty) {
+                        container.innerHTML = `<div class="p-4 text-center bg-emerald-50 rounded-xl border border-emerald-100 text-emerald-700 text-sm font-bold">Sempurna! Tidak ada tunggakan.</div>`;
+                        document.getElementById('stat-unpaid-revenue').innerText = "Rp 0";
+                        return;
+                    }
+                    
+                    container.innerHTML = '';
+                    snap.forEach(doc => {
+                        const d = doc.data();
+                        totalUnpaidAmount += (d.amount || 0);
+                        
+                        // Buat teks WhatsApp otomatis dari sistem
+                        const waText = encodeURIComponent(`Halo, menginfokan kembali untuk tagihan kost periode ${d.month} sebesar Rp ${(d.amount || 0).toLocaleString('id-ID')} saat ini belum diselesaikan. Mohon segera melakukan pembayaran ya. Terima kasih.`);
+                        
+                        container.innerHTML += `
+                            <div class="p-4 border border-rose-100 bg-rose-50/30 rounded-xl flex justify-between items-center hover:bg-rose-50/60 transition-all duration-200">
+                                <div class="space-y-1">
+                                    <div class="flex items-center space-x-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                        <p class="text-xs font-bold text-rose-900">Periode: ${d.month}</p>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 font-medium pl-3">Tenant: ${d.tenantId}</p>
+                                    <p class="text-sm font-bold text-slate-800 pl-3 mt-1">Rp ${(d.amount || 0).toLocaleString('id-ID')}</p>
+                                </div>
+                                <a href="https://wa.me/?text=${waText}" target="_blank" class="px-3 py-1.5 bg-white border border-rose-200 hover:border-rose-500 text-rose-600 hover:bg-rose-500 hover:text-white rounded-lg text-xs font-bold transition-all shadow-sm">
+                                    Tagih
+                                </a>
+                            </div>
+                        `;
+                    });
+
+                    // Update stat Total Uang yang tertunggak
+                    document.getElementById('stat-unpaid-revenue').innerText = `Rp ${totalUnpaidAmount.toLocaleString('id-ID')}`;
+                });
+
+            } catch (err) {
+                console.error("Dashboard Init Error:", err);
+                document.body.innerHTML = `<div class="p-10 text-center text-red-500 font-bold bg-white h-screen">Gagal terhubung. Pastikan API route dan .env terkonfigurasi.</div>`;
+            }
+        }
+
+        initDashboard();
+    </script>
+</body>
+</html>
