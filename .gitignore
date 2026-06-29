@@ -5,3 +5,4 @@ serviceAccountKey.json
 seed.js
 package-lock.json
 package.json
+firebase-local.js

@@ -131,9 +131,21 @@
 
         async function initDashboard() {
             try {
-                // Mengambil config tanpa mem-build .env secara terang-terangan di browser
-                const response = await fetch('/api/config');
-                const firebaseConfig = await response.json();
+                let firebaseConfig;
+
+                // LOGIKA PINTAR: Cek apakah jalan di Vercel atau Lokal
+                try {
+                    // 1. Coba ambil dari API Vercel
+                    const response = await fetch('/api/config');
+                    if (!response.ok) throw new Error('API tidak ditemukan (Mungkin di lokal)');
+                    firebaseConfig = await response.json();
+                    console.log("Terhubung via Vercel API Route");
+                } catch (apiError) {
+                    // 2. Kalau gagal, ambil dari file lokal
+                    const localConfig = await import('./firebase-local.js');
+                    firebaseConfig = localConfig.default;
+                    console.log("Terhubung via Local File");
+                }
 
                 const app = initializeApp(firebaseConfig);
                 const db = getFirestore(app);
